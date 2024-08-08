@@ -104,6 +104,10 @@ jobs:
       ABORT_SYNC: ${{ steps.check_branch.outputs.ABORT_SYNC }}
 
     steps:
+      # Start with Bundle update
+      - name: Bundle update
+        run: bundle update fastlane
+        
       - name: Check if running on main or dev branch
         if: |
           needs.check_alive_and_permissions.outputs.WORKFLOW_PERMISSION == 'true' &&
