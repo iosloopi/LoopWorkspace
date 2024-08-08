@@ -104,9 +104,6 @@ jobs:
       ABORT_SYNC: ${{ steps.check_branch.outputs.ABORT_SYNC }}
 
     steps:
-      # Start with Bundle update
-      - name: Bundle update
-        run: bundle update fastlane
         
       - name: Check if running on main or dev branch
         if: |
@@ -291,7 +288,11 @@ jobs:
             echo "table_printer.rb not found"
             exit 1
           fi
-
+          
+      # Bundle update
+      - name: Bundle update
+        run: bundle update fastlane
+        
       # Install project dependencies
       - name: Install Project Dependencies
         run: bundle install
